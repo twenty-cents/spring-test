@@ -93,7 +93,7 @@ public class JavaCitySpringTestApplicationTests {
 		HttpEntity<Monument> arcEntity = new HttpEntity<Monument>(arc);
 		
 		// When posting this monument to /api/city/{name}/monument
-		ResponseEntity<Monument> responseEntity = this.restTemplate.postForEntity("/api/city/{name}/monument", arcEntity, Monument.class, "paris");
+		ResponseEntity<Monument> responseEntity = this.restTemplate.postForEntity("/api/city/{cityName}/monument", arcEntity, Monument.class, "paris");
 
 		// Then OK status code should be sent back and 
 		// the created monument should be returned and should be filled with its attributes
