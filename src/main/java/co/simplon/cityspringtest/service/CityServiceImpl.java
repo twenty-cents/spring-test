@@ -1,28 +1,34 @@
 package co.simplon.cityspringtest.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import co.simplon.cityspringtest.model.City;
+import co.simplon.cityspringtest.repository.CityRepository;
 
 @Service
 public class CityServiceImpl implements CityService {
 
+	private CityRepository cityRepository;
+
+	public CityServiceImpl(CityRepository cityRepository) {
+		this.cityRepository = cityRepository;
+	}
+
 	@Override
 	public List<City> getAllCities() {
-		return new ArrayList<>();
+		return cityRepository.findAll();
 	}
-	
+
 	@Override
 	public City getCityByName(String name) {
-		return new City("Paris", 75);
+		return cityRepository.findByName(NameResourceHelper.urlToName(name));
 	}
 
 	@Override
 	public City saveCity(City city) {
-		return city;
+		return cityRepository.save(city);
 	}
 
 }
