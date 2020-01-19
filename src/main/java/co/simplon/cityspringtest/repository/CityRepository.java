@@ -1,11 +1,11 @@
 package co.simplon.cityspringtest.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import co.simplon.cityspringtest.model.City;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 
 public interface CityRepository extends JpaRepository<City, Long> {
 
-	public City findByName(String name);
+	City findByName(@Param("nameToFind") String name);
 
 }

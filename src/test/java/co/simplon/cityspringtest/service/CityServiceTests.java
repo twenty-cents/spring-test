@@ -1,19 +1,18 @@
 package co.simplon.cityspringtest.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import co.simplon.cityspringtest.model.City;
+import co.simplon.cityspringtest.repository.CityRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import co.simplon.cityspringtest.model.City;
-import co.simplon.cityspringtest.repository.CityRepository;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CityServiceTests {

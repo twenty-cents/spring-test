@@ -1,13 +1,12 @@
 package co.simplon.cityspringtest.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import co.simplon.cityspringtest.model.City;
 import co.simplon.cityspringtest.model.Monument;
 import co.simplon.cityspringtest.repository.CityRepository;
 import co.simplon.cityspringtest.repository.MonumentRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class MonumentServiceImpl implements MonumentService {
