@@ -2,11 +2,11 @@ package co.simplon.cityspringtest.service;
 
 import co.simplon.cityspringtest.model.City;
 import co.simplon.cityspringtest.repository.CityRepository;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,56 +14,56 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class CityServiceTests {
 
-	@Mock
-	CityRepository cityRepo;
+    @Mock
+    CityRepository cityRepo;
 
-	private CityService cityService;
+    private CityService cityService;
 
-	@Before
-	public void setUp() throws Exception {
-		cityService = new CityServiceImpl(cityRepo);
-	}
+    @BeforeEach
+    public void setUp() throws Exception {
+        cityService = new CityServiceImpl(cityRepo);
+    }
 
-	@Test
-	public void getAllCities() {
-		given(cityRepo.findAll()).willReturn(new ArrayList<>());
+    @Test
+    public void getAllCities() {
+        given(cityRepo.findAll()).willReturn(new ArrayList<>());
 
-		List<City> cities = cityService.getAllCities();
+        List<City> cities = cityService.getAllCities();
 
-		assertThat(cities).isNotNull();
-	}
+        assertThat(cities).isNotNull();
+    }
 
-	@Test
-	public void getCityByName() {
-		given(cityRepo.findByName("Paris")).willReturn(new City("Paris", 75));
+    @Test
+    public void getCityByName() {
+        given(cityRepo.findByNameIgnoreCase("Paris")).willReturn(new City("Paris", 75));
 
-		City paris = cityService.getCityByName("Paris");
+        City paris = cityService.getCityByName("Paris");
 
-		assertThat(paris.getName()).isEqualTo("Paris");
-		assertThat(paris.getDptCode()).isEqualTo(75);
-	}
+        assertThat(paris.getName()).isEqualTo("Paris");
+        assertThat(paris.getDptCode()).isEqualTo(75);
+    }
 
-	@Test
-	public void getCityByNameNotFound() {
-		given(cityRepo.findByName("Minas Tirith")).willReturn(null);
+    @Test
+    public void getCityByNameNotFound() {
+        given(cityRepo.findByNameIgnoreCase("Minas Tirith")).willReturn(null);
 
-		City notFoundCity = cityService.getCityByName("Minas Tirith");
+        City notFoundCity = cityService.getCityByName("Minas Tirith");
 
-		assertThat(notFoundCity).isNull();
-	}
+        assertThat(notFoundCity).isNull();
+    }
 
-	@Test
-	public void createCity() {
-		City paris = new City("Paris", 75);
-		given(cityRepo.save(paris)).willReturn(new City("Paris", 75));
+    @Test
+    public void createCity() {
+        City paris = new City("Paris", 75);
+        given(cityRepo.save(paris)).willReturn(new City("Paris", 75));
 
-		City savedParis = cityService.saveCity(paris);
+        City savedParis = cityService.saveCity(paris);
 
-		assertThat(savedParis.getName()).isEqualTo("Paris");
-		assertThat(savedParis.getDptCode()).isEqualTo(75);
-	}
+        assertThat(savedParis.getName()).isEqualTo("Paris");
+        assertThat(savedParis.getDptCode()).isEqualTo(75);
+    }
 
 }

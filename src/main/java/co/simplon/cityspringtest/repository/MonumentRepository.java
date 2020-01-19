@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface MonumentRepository extends JpaRepository<Monument, Long> {
 
-	List<Monument> findAllByCityName(String cityName);
+	List<Monument> findAllByCityNameIgnoreCase(String cityName);
 	
-	Monument findByCityNameAndName(String cityName, String monumentName);
+	Monument findByCityNameAndNameAllIgnoreCase(String cityName, String monumentName);
 
 }

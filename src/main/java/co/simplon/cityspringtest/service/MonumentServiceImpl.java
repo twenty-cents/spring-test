@@ -21,19 +21,19 @@ public class MonumentServiceImpl implements MonumentService {
 
 	@Override
 	public List<Monument> getAllCityMonuments(String cityName) {
-		return monumentRepository.findAllByCityName(cityName);
+		return monumentRepository.findAllByCityNameIgnoreCase(cityName);
 	}
 
 	@Override
 	public Monument getMonumentByCityAndName(String cityName, String name) {
-		return monumentRepository.findByCityNameAndName(NameResourceHelper.urlToName(cityName),
+		return monumentRepository.findByCityNameAndNameAllIgnoreCase(NameResourceHelper.urlToName(cityName),
 				NameResourceHelper.urlToName(name));
 	}
 
 	@Override
 	public Monument saveMonumentToCity(String cityName, Monument monument) {
 		Monument newSavedMonument = null;
-		City city = cityRepository.findByName(NameResourceHelper.urlToName(cityName));
+		City city = cityRepository.findByNameIgnoreCase(NameResourceHelper.urlToName(cityName));
 
 		if (city != null) {
 			monument.setCity(city);

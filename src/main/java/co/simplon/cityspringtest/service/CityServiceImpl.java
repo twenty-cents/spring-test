@@ -22,7 +22,7 @@ public class CityServiceImpl implements CityService {
 
 	@Override
 	public City getCityByName(String name) {
-		return cityRepository.findByName(NameResourceHelper.urlToName(name));
+		return cityRepository.findByNameIgnoreCase(NameResourceHelper.urlToName(name));
 	}
 
 	@Override
